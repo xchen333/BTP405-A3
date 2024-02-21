@@ -6,7 +6,7 @@ import mysql.connector
 
 # Database connection
 db = mysql.connector.connect(
-    host="localhost",
+    host="db",
     user="root",
     password="password",
     database="notesdb"

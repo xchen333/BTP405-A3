@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: notesdb
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
